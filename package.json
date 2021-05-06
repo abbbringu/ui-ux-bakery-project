@@ -1,17 +1,40 @@
 {
-  "name": "bakeryapi",
-  "version": "1.0.0",
-  "description": "",
+  "name": "cakeshop",
+  "version": "0.0.1",
+  "description": "a website to view, order and handling orders",
+  "productName": "cakeshop",
+  "author": "abbbringu <43879870+abbbringu@users.noreply.github.com>",
+  "private": true,
   "main": "generate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "json-server --watch db.json"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "core-js": "^3.6.5",
+    "quasar": "^1.0.0",
     "json-server": "^0.16.3",
     "faker": "^5.5.3",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@quasar/app": "^2.0.0"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
   }
 }
