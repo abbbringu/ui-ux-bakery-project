@@ -11,12 +11,22 @@
     "start-server": "json-server --watch db.json"
   },
   "dependencies": {
+    "-": "0.0.1",
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-stage-3": "^6.24.1",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0",
-    "json-server": "^0.16.3",
     "faker": "^5.5.3",
-    "lodash": "^4.17.21"
+    "json-server": "^0.16.3",
+    "lodash": "^4.17.21",
+    "quasar": "^1.0.0",
+    "save": "^2.4.0",
+    "save-dev": "0.0.1-security",
+    "style-loader": "^2.0.0",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2",
+    "vuexfire": "^3.2.5"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0"

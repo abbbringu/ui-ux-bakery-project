@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 // import example from './module-example'
 
 Vue.use(Vuex)
 
+
+import auth from './auth'
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -17,7 +18,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
+      auth
     },
 
     // enable strict mode (adds overhead!)
