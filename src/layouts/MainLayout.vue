@@ -7,14 +7,14 @@
             <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" class="q-pt-xl col absolute-center" width="150" height="150" alt="Italian Trulli">
             <!-- <q-btn class="q-pl-md col absolute-center" style="width:10%" flat ripple="true" label="Cake Shop" to="/"/> -->
             <div class="q-gutter-md absolute-right q-pr-lg q-pt-sm justify-center">
-              <q-btn outline round color="white" icon="shopping_basket" />
-              <q-btn outline round color="white" icon="person" @click="loginScreen" />
+              <q-btn outline round color="white" icon="shopping_basket"  @click="showCart = true"/>
+              <q-btn outline round :color="authIconColor" icon="person" @click="loginScreen" />
             </div>
           </div> 
         </q-toolbar>
         <q-toolbar inset/>
         <q-toolbar inset class="text-white row justify-center">
-          <q-tabs @click="resetnav" v-model="tab" shrink class="col q-pa-sm justify-center absolute-center no-warp" :breakpoint="number">
+          <q-tabs @click="resetnav" v-model="tab" class="col q-pa-sm justify-center absolute-center no-warp text-center" breakpoint="0">
             <!-- <q-tab name="tab1" label="Meny" to="/meny" /> -->
             <q-route-tab class="col" name="tab1" label="About us" to="/AboutUs" exact/>
             <q-route-tab class="col" name="tab2" label="Home" to="/" exact/>
@@ -23,8 +23,16 @@
         </q-toolbar>
     </q-header>
 
+    <q-dialog v-model="LoggedOut">
+      <Login @isAuthed="changeIcon"></Login>  
+    </q-dialog>
+
     <q-dialog v-model="LoggedIn">
-      <Login></Login>  
+      <Profile @isAuthed="changeIcon" />
+    </q-dialog>
+
+    <q-dialog v-model="showCart">
+      <Cart />
     </q-dialog>
 
     <q-page-container>
@@ -36,9 +44,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Login from '../components/Login'
+import Profile from '../components/Profile'
+import Cart from '../components/Cart'
 export default {
   name: 'MainLayout',
-  components: {Login},
+  components: {Login, Profile, Cart},
   data () {
     return {
       tab: '',
@@ -46,7 +56,9 @@ export default {
       LoggedIn: false,
       LoggedOut: false,
       email: null,
-      password: null
+      password: null,
+      authIconColor: 'white',
+      showCart: false
     }
   },
   methods: {
@@ -54,18 +66,23 @@ export default {
       this.tab = ''
     },
     loginScreen () {
-      console.log("in a function")
       if(this.isAuth){
-        console.log("logged in")
         this.LoggedIn = true
         this.LoggedOut = false
       }
       else
       {
-        console.log("not logged in")
         this.LoggedIn = false
         this.LoggedOut = true
       }
+    },
+    changeIcon: function(value) {
+      if(value){
+        this.authIconColor = 'green'
+      } else {
+        this.authIconColor = 'white'
+      }
+      
     }
   },
   computed: {

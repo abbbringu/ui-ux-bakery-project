@@ -27,6 +27,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import axios from 'axios'
 export default {
     name: 'Login',
     data() {
@@ -38,11 +39,38 @@ export default {
         }
     },
     methods: {
+       ...mapActions('auth', ['login']),
+       ...mapActions('user', ['setUserData']),
         veryfyingstuff(){   // kollar om mail och lösen finns i get posten 
-            
+            this.data.forEach(element => {
+              if(element.email == this.email){
+                if(element.password == this.password){
+                  this.login(true)
+                  this.setUserData(element)
+                  this.veryfying = true
+                  this.$emit('isAuthed', true)
+                  this.showNotify('Logged In', 'positive') //    Kellie_Kunde1@yahoo.com Bt9BnesdD3IW3tb
+                }
+              }
+            })
+            if(this.isAuth == false){
+              console.log('failed')
+              this.showNotify('Email or password were incorrect', 'negative')
+            }
+        },
+        showNotify(message, color) {
+          this.$q.notify({
+            color: color,
+            textColor:'white',
+            icon: 'error',
+            message: message,
+            position: 'top',
+            timeout: 1000
+          })
         }
     },
     created() {
+      console.log('ive tried')
     axios.get(`http://localhost:3000/customers`)
     .then(response => {
       // JSON responses are automatically parsed.
@@ -51,7 +79,10 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
-    }
+    },
+    computed: {
+    ...mapGetters('auth', ['isAuth'])
+  }
   
 }
 </script>

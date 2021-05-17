@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 
 import auth from './auth'
+import user from './user'
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -18,7 +19,8 @@ import auth from './auth'
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      auth
+      auth,
+      user
     },
 
     // enable strict mode (adds overhead!)

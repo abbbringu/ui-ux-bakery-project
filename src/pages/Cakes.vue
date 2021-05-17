@@ -1,55 +1,40 @@
 <template>
-  <div class="q-pa-md q-pt-xl row items-start q-gutter-md">
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Overline</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Title</div>
-        <div class="text-caption text-grey">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  <div class="q-pa-md q-pt-xl row items-start justify-center q-gutter-md">
+    
+    <q-card class="my-card" flat bordered  v-for="cake in cakes" :key="cake.id">
+      <q-card-section @click="dialog(cake.title)" class="clickable">
+        <div class="row justfy-center">
+          <q-img class="thumbnail col" :src="cake.image"/>
         </div>
+        
+        <q-card-section>
+          <div class="text-h5 q-mt-sm q-mb-xs clickable">{{cake.title}}</div>
+          <div class="text-caption text-grey clickable">
+            {{cake.previewDescription}}
+          </div>
+        </q-card-section>
       </q-card-section>
 
-      <q-card-actions>
-        <q-btn flat color="dark" label="Share" />
-        <q-btn flat color="primary" label="Book" />
-
-        <q-space />
-
-        <q-btn
-          color="grey"
-          round
-          flat
-          dense
-          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="expanded = !expanded"
-        />
-      </q-card-actions>
-
-      <q-slide-transition>
-        <div v-show="expanded">
-          <q-separator />
-          <q-card-section class="text-subitle2">
-            {{ lorem }}
-          </q-card-section>
+      <q-card-actions class="absolute-bottom q-pa-lg row justify-center">
+        <div class="text-weight-bolder text-h6 text-orange-9 col text-center absolute-center q-pb-lg">{{cake.price}}$</div>
+        <div class=" absolute-bottom-right">
+          <q-btn size="lg" class="q-ma-sm" round color="orange" icon="shopping_basket" @click="Addtocart(cake, 1)"/>
         </div>
-      </q-slide-transition>
+        <q-space />
+      </q-card-actions>
     </q-card>
-    <h5>{{ cakes }} </h5>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      expanded: false,
-      lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      cakes: null
+      cakes: null,
+      data: null,
+      openDialog: false
     }
   },
   created() {
@@ -61,6 +46,21 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
+  },
+  methods: {
+     ...mapActions('user', ['cartAction']),
+    dialog(value){
+      console.log(value)
+      this.data = value
+    },
+    Addtocart(product, quantity) {
+      product.amount = quantity
+      console.log(this.cart)
+      this.cartAction(product)
+    }
+  },
+  computed: {
+    ...mapGetters('user', ['cart'])
   }
 }
 </script>
@@ -69,4 +69,14 @@ export default {
 .my-card
   width: 100%
   max-width: 350px
+  height: 550px
+
+.clickable 
+  cursor: pointer
+
+.thumbnail
+  width: 250px
+  height: 250px
+
+
 </style>

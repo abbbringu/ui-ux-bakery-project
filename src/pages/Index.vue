@@ -21,9 +21,9 @@
       </template>
     </q-carousel>
   </div>
-  <h1 @click="log">hejar {{isAuth}}</h1>
-    <br/>
-    <h1 @click="login(false)">test</h1>  
+    <br/>  
+    <h5>Kellie_Kunde1@yahoo.com Bt9BnesdD3IW3tb</h5>
+    <h5>{{cart}}</h5>
   </q-page>
 </template>
 
@@ -38,14 +38,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['login']),
-    ...mapActions('auth', ['logout']),
-    log: function () {
-      this.login(true)
-    }
+    ...mapActions('auth', ['login'])
   },
   computed: {
-    ...mapGetters('auth', ['isAuth'])
+    ...mapGetters('auth', ['isAuth']),
+    ...mapGetters('user', ['user']),
+    ...mapGetters('user', ['cart'])
   }
 }
 </script>
