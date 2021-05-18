@@ -14,10 +14,14 @@ export  function setUser (state, payload) {
 //     }
 // }
 export  function Cart (state, payload) {
-    if(state.cart[payload.id-1] == 0){ // om inte objextet är där "skapar" den det annars lägger den till i amount
+    if(state.cart[payload.id-1] == 0){  // om inte objextet är där "skapar" den det annars lägger den till i amount
         state.cart[payload.id-1] = payload
     } else {
         state.cart[payload.id-1].amount += payload.amount
     }
     
+}
+
+export  function CarModification (state, payload) {
+    state.cart = payload
 }

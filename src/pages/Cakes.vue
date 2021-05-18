@@ -55,7 +55,6 @@ export default {
     },
     Addtocart(product, quantity) {
       product.amount = quantity
-      console.log(this.cart)
       this.cartAction(product)
     }
   },
