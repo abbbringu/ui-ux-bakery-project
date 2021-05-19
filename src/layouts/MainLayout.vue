@@ -4,7 +4,7 @@
 
         <q-toolbar class="text-white rounded-borders row">
           <div class="row">
-            <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" class="q-pt-xl col absolute-center" width="150" height="150" alt="Italian Trulli">
+            <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" class="q-pt-xl col absolute-center clickable" width="150" height="150" alt="Italian Trulli">
             <!-- <q-btn class="q-pl-md col absolute-center" style="width:10%" flat ripple="true" label="Cake Shop" to="/"/> -->
             <div class="q-gutter-md absolute-right q-pr-lg q-pt-sm justify-center">
               <q-btn outline round color="white" icon="shopping_basket"  @click="showCart = true"/>
@@ -97,5 +97,8 @@ export default {
 }
 .header {
   background: rgba(0, 0, 0, 0.60) /* Green background with 30% opacity */
+}
+.clickable {
+  cursor: pointer
 }
 </style>

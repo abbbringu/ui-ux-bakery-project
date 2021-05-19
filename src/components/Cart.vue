@@ -11,34 +11,36 @@
             <div class="row justify-center">
               <q-img class="col" src="../../public\images\NoItem.png" style="height: 20vh; max-width: 26vh"/>
             </div>
-            
             <p class="text-center text-h5 text-weight-bolder">No Items In Basket</p>
           </div>
-          <div class="row items-center aligne-center q-ma-sm" v-else v-for="(item, index) in data" :key="index">
-            <div v-if="item != 0" class="row items-center" style="width: 100%">
-              <div class="col">
-                <div class="row justify-center">
-                  <p></p>
-                  <q-img class="col" :src="item.image" style="height: 140px; max-width: 150px"/>
-                </div>
-                
-              </div>
-              <div class="col text-center column">
+          <div v-else class="">
+            <div class="row items-center aligne-center" v-for="(item, index) in data" :key="index">
+              <div v-if="item != 0" class="row items-center q-pt-sm" style="width: 100%">
                 <div class="col">
-                  <p>{{item.title}}</p>
+                  <div class="row justify-center">
+                    <p></p>
+                    <q-img class="col" :src="item.image" style="height: 140px; max-width: 150px"/>
+                  </div>
+                  
                 </div>
-                <div class="row justify-center">
-                  <q-btn class="col" push  color="red-9" label="x" @click="subtract(item, index)" v-if="item.amount === 1"/>
-                  <q-btn class="col" push  color="red-9" label="-" @click="subtract(item, index)" v-else/>
-                  <p class="col">{{item.amount}}</p>
-                  <q-btn class="col" push  color="green-9" label="+" @click="add(item)"/>
+                <div class="col text-center column">
+                  <div class="col">
+                    <p>{{item.title}}</p>
+                  </div>
+                  <div class="row justify-center">
+                    <q-btn class="col" push  color="negative" label="x" @click="subtract(item, index)" v-if="item.amount === 1"/>
+                    <q-btn class="col" push  color="negative" label="-" @click="subtract(item, index)" v-else/>
+                    <p class="col">{{item.amount}}</p>
+                    <q-btn class="col" push  color="positive" label="+" @click="add(item)"/>
+                  </div>
                 </div>
-              </div>
-              <div class="col text-center">
-                <p>$ {{item.amount * item.price}}</p>
+                <div class="col text-center">
+                  <p>$ {{item.amount * item.price}}</p>
+                </div>
               </div>
             </div>
           </div>
+
         </q-card-section>
 
         <q-separator />

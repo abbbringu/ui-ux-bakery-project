@@ -16,7 +16,7 @@
       </q-card-section>
       <q-card-section class="clickable" style="height: 100%"  @click="dialog(cake)"/>
       <q-card-actions class="absolute-bottom q-pa-lg row justify-center">
-        <div class="text-weight-bolder text-h6 text-orange-9 col text-center absolute-center q-pb-lg">{{cake.price}}$</div>
+        <div class="text-weight-bolder text-h6 text-orange-9 col text-center absolute-center q-pb-lg">$ {{cake.price}}</div>
         <div class=" absolute-bottom-right">
           <q-btn size="lg" class="q-ma-sm" round color="orange" icon="shopping_basket" @click="Addtocart(cake, 1)"/>
         </div>
@@ -25,7 +25,7 @@
     </q-card>
 
     <q-dialog v-model="showCake">
-      <ShowCake v-bind:fromParent="data"/>
+      <ShowCake v-bind:fromParent="data" @addToBasket="Addtocart(...arguments)" @closethis="showCake = false"/>
     </q-dialog>
 
     
@@ -59,14 +59,24 @@ export default {
   methods: {
      ...mapActions('user', ['cartAction']),
     dialog(value){
-      console.log(value)
       this.data = value
       this.showCake = true
     },
     Addtocart(product, quantity) {
       product.amount = quantity
       this.cartAction(product)
-    }
+      this.showNotify('Added To Basket', 'positive', 'sentiment_satisfied_alt')
+    },
+    showNotify(message, color, icon) {
+          this.$q.notify({
+            color: color,
+            textColor:'white',
+            icon: icon,
+            message: message,
+            position: 'top',
+            timeout: 1000
+          })
+        }
   },
   computed: {
     ...mapGetters('user', ['cart'])
