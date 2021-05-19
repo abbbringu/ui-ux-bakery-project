@@ -2,19 +2,19 @@
   <div class="q-pa-md q-pt-xl row items-start justify-center q-gutter-md">
     
     <q-card class="my-card" flat bordered  v-for="cake in cakes" :key="cake.id">
-      <q-card-section @click="dialog(cake.title)" class="clickable">
+      <q-card-section @click="dialog(cake)" class="clickable">
         <div class="row justfy-center">
           <q-img class="thumbnail col" :src="cake.image"/>
         </div>
         
-        <q-card-section>
+        <q-card-section class="">
           <div class="text-h5 q-mt-sm q-mb-xs clickable">{{cake.title}}</div>
           <div class="text-caption text-grey clickable">
             {{cake.previewDescription}}
           </div>
         </q-card-section>
       </q-card-section>
-
+      <q-card-section class="clickable" style="height: 100%"  @click="dialog(cake)"/>
       <q-card-actions class="absolute-bottom q-pa-lg row justify-center">
         <div class="text-weight-bolder text-h6 text-orange-9 col text-center absolute-center q-pb-lg">{{cake.price}}$</div>
         <div class=" absolute-bottom-right">
@@ -23,18 +23,27 @@
         <q-space />
       </q-card-actions>
     </q-card>
+
+    <q-dialog v-model="showCake">
+      <ShowCake v-bind:fromParent="data"/>
+    </q-dialog>
+
+    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex'
+import ShowCake from '../components/ShowCake'
 export default {
+  components: {ShowCake},
   data () {
     return {
       cakes: null,
       data: null,
-      openDialog: false
+      openDialog: false,
+      showCake: false
     }
   },
   created() {
@@ -52,6 +61,7 @@ export default {
     dialog(value){
       console.log(value)
       this.data = value
+      this.showCake = true
     },
     Addtocart(product, quantity) {
       product.amount = quantity

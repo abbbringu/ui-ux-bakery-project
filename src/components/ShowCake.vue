@@ -1,35 +1,31 @@
 <template>
-    <q-card style="width: 800px; max-width: 80vw;">
+    <q-card style="width: 80vw; max-width: 100vw; height: 85vw;">
         <q-card-section class="row items-center q-pb-none">
-          <div class="text-weight-bolder text-h4 col">Log in</div>
-          <q-space />
-          <q-btn icon="close" flat round dense v-close-popup/>
+          <div class="text-weight-bolder text-h4 col text-center">{{fromParent.title}}</div>
         </q-card-section>
 
         <q-card-section class="row justify-center">
-         <q-icon class="col" name="person" style="font-size: 10em;" />
+          <q-img :src="fromParent.image" :ratio="16/9" style="width: 70vh"/>
         </q-card-section>
+
         <q-card-section class=" col row justify-center">
           <div style="width: 70%" class="">
-            <q-input class="col" type="email" label="E-mail" v-model="email" :rules="[val => val && val.length > 0 || 'write your email here']"></q-input>
+            <p>{{fromParent}}</p>
           </div>
         </q-card-section>
         <q-card-section class="row justify-center">
           <div style="width: 70%" class="">
-            <q-input class="col" type="password" label="Password" v-model="password" :rules="[val => val && val.length > 0 || 'write your password here']"></q-input>
+            <!-- <q-input class="col" type="password" label="Password" v-model="password" :rules="[val => val && val.length > 0 || 'write your password here']"></q-input> -->
           </div>
         </q-card-section>
-        <q-card-actions align="center">
-          <q-btn flat size="23px" label="Log In" color="primary" v-close-popup='veryfying' @click="veryfyingstuff" />
-        </q-card-actions>
       </q-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import axios from 'axios'
 export default {
     name: 'Login',
+    props: ['fromParent'],
     data() {
         return{
             email: null,
@@ -68,17 +64,6 @@ export default {
             timeout: 1000
           })
         }
-    },
-    created() {
-      console.log('ive tried')
-    axios.get(`http://localhost:3000/customers`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.data = response.data
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
     },
     computed: {
     ...mapGetters('auth', ['isAuth'])

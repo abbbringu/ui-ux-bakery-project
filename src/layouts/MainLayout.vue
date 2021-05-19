@@ -32,7 +32,7 @@
     </q-dialog>
 
     <q-dialog v-model="showCart">
-      <Cart />
+      <Cart @closemyself="showCart = false" @toLogin="LoggedOut = true"/>
     </q-dialog>
 
     <q-page-container>

@@ -54,7 +54,6 @@ export default {
   },
   methods:{
     showNotif (value) {
-        console.log("test");
         copyToClipboard(value)
             .then(() => {
             this.$q.notify({
