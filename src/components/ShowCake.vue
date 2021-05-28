@@ -1,5 +1,5 @@
 <template>
-    <q-card style="max-width: 90%; max-height: 90%;">
+    <q-card style="max-width: 900px; max-height: 90%;">
         <q-card-section class="row items-center q-pb-none">
           <div class="text-weight-bolder text-h5 col text-center">{{fromParent.title}}</div>
         </q-card-section>
@@ -10,8 +10,8 @@
 
         <q-separator />
 
-        <q-card-section class=" col row justify-center scroll" style="max-height: 30vh">
-          <div style="width: 100%" class="">
+        <q-card-section class=" col row justify-center scroll" style="max-height: 25vh">
+          <div class="text-desc">
             <p>{{fromParent.detailDescription}}</p>
           </div>
         </q-card-section>
@@ -83,8 +83,23 @@ export default {
           console.log('adding to basket')
           this.showNotify('Added To Basket', 'positive', 'sentiment_satisfied_alt')
           this.$emit('closethis')
+          this.$emit('addedToBasket')
         }
     }
   
 }
 </script>
+<style scoped>
+.text-desc{
+  width: 70%;
+}
+
+.img-cotainer {
+  max-width: 60vw;
+}
+@media only screen and (max-width: 768px) {
+  .text-desc {
+    width: 100%;
+  }
+}
+</style>

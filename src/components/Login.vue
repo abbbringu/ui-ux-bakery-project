@@ -49,20 +49,20 @@ export default {
                   this.setUserData(element)
                   this.veryfying = true
                   this.$emit('isAuthed', true)
-                  this.showNotify('Logged In', 'positive') //    Kellie_Kunde1@yahoo.com Bt9BnesdD3IW3tb
+                  this.showNotify('Logged In', 'positive', 'done') //    Kellie_Kunde1@yahoo.com Bt9BnesdD3IW3tb
                 }
               }
             })
             if(this.isAuth == false){
-              console.log('failed')
-              this.showNotify('Email or password were incorrect', 'negative')
+              console.log('failed to login')
+              this.showNotify('Email or password were incorrect', 'negative', 'error')
             }
         },
-        showNotify(message, color) {
+        showNotify(message, color, icon) {
           this.$q.notify({
             color: color,
             textColor:'white',
-            icon: 'error',
+            icon: icon,
             message: message,
             position: 'top',
             timeout: 1000

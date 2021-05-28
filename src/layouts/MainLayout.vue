@@ -4,10 +4,14 @@
 
         <q-toolbar class="text-white rounded-borders row">
           <div class="row">
-            <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" class="q-pt-xl col absolute-center clickable" width="150" height="150" alt="Italian Trulli">
+            <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" class="q-pt-xl col absolute-center clickable" width="150" height="150" alt="Italian Trulli" @click="$router.push({path: '/'})">
             <!-- <q-btn class="q-pl-md col absolute-center" style="width:10%" flat ripple="true" label="Cake Shop" to="/"/> -->
             <div class="q-gutter-md absolute-right q-pr-lg q-pt-sm justify-center">
-              <q-btn outline round color="white" icon="shopping_basket"  @click="showCart = true"/>
+              <q-btn outline round color="white" icon="shopping_basket"  @click="showCart = true">
+                <q-badge color="orange-9" text-color="white" floating v-if="amountInCart > 0">
+                {{amountInCart}}
+                </q-badge>
+                </q-btn>
               <q-btn outline round :color="authIconColor" icon="person" @click="loginScreen" />
             </div>
           </div> 
@@ -32,11 +36,17 @@
     </q-dialog>
 
     <q-dialog v-model="showCart">
-      <Cart @closemyself="showCart = false" @toLogin="LoggedOut = true"/>
+      <Cart @closemyself="showCart = false" @toLogin="LoggedOut = true" @addToBasket="changeCartIcon" @purchase="purchase" />
+    </q-dialog>
+
+    <q-dialog v-model="checkmark" persistent class="bg-white">
+      <q-card style="width: 100%, height:100%">
+        <img id="test"  basic rel="preload" preload="auto" src="../../public\\checkmarkgif.gif" alt="this slowpoke moves"  width="250" />
+      </q-card>
     </q-dialog>
 
     <q-page-container>
-      <router-view />
+      <router-view @addToBasket="changeCartIcon" />
     </q-page-container>
   </q-layout>
 </template>
@@ -46,9 +56,10 @@ import { mapActions, mapGetters } from 'vuex'
 import Login from '../components/Login'
 import Profile from '../components/Profile'
 import Cart from '../components/Cart'
+import Checkmark from '../components/Checkmark'
 export default {
   name: 'MainLayout',
-  components: {Login, Profile, Cart},
+  components: {Login, Profile, Cart, Checkmark},
   data () {
     return {
       tab: '',
@@ -58,7 +69,9 @@ export default {
       email: null,
       password: null,
       authIconColor: 'white',
-      showCart: false
+      showCart: false,
+      amountInCart:0,
+      checkmark: false
     }
   },
   methods: {
@@ -78,15 +91,49 @@ export default {
     },
     changeIcon: function(value) {
       if(value){
-        this.authIconColor = 'green'
+        this.authIconColor = 'orange-9'
       } else {
         this.authIconColor = 'white'
       }
       
-    }
+    },
+    changeCartIcon(){
+      this.amountInCart = 0
+      this.cart.forEach(element => {
+      if(element != 0){
+        this.amountInCart++
+      }
+    })
+    },
+    purchase(){
+      console.log('test')
+      this.showCart = false
+      this.checkmark = true
+      this.init()
+    },
+    init() {
+        setTimeout(() => {  
+          var img = document.getElementById('test');
+          this.checkmark = false 
+          img.src = "";
+          }, 6000);
+      }
   },
   computed: {
-    ...mapGetters('auth', ['isAuth'])
+    ...mapGetters('auth', ['isAuth']),
+    ...mapGetters('user', ['cart'])
+  },
+  mounted () {
+    this.amountInCart = 0
+    this.cart.forEach(element => {
+      if(element != 0){
+        this.amountInCart++
+      }
+    })
+
+    if(this.isAuth){
+      this.changeIcon(true)
+    }
   }
 }
 </script>

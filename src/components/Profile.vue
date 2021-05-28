@@ -16,7 +16,7 @@
         </q-card-section>
         <q-card-section class="row justify-center">
           <div style="width: 60%" class="text-center">
-           <p>Proudly joined us the {{user.timestamp}}</p>
+           <p>Joined us the {{user.timestamp}}</p>
           </div>
         </q-card-section>
         <q-card-actions align="center">

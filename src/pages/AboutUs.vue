@@ -1,10 +1,17 @@
 <template>
   <div>
     <div class="row justify-center">
-      <img src="https://14slph41wbtl2yi39625md6s-wpengine.netdna-ssl.com/wp-content/uploads/2020/10/34345-the-power-of-teamwork-blog-hero-image_1500x480_v1-01-1140x365.jpg" width="100%" height="500" alt="Italian Trulli">
+      <img src="https://www.bacanal.com.ar/wp-content/uploads/2018/02/CAFE-INSTAGRAM-VA2.jpg" width="100%" style="min-height:250px; max-height:700px" alt="Italian Trulli">
+    </div>
+    <div class="column">
+      <p class="text-center text-h2 text-weight-bold">About us</p>
+      <div class="row justify-center">
+        <p class="text-center text-body1" style="width:70%">We are a baking company that makes sure that you can get the best cake for every occation. We have ever since 1960 trying to make the best looking cakes. With our fast moving staff, we always imporv our recipies and indigriens. We make sure to use the best quality product for you to enjoy. For every second we improve cake for our customers. Ever since the start we found a equation for cake success. Good cakes * Beautifull cakes = the perfext experience for our customer. Not only are we committed to but so are our customers. We have created a greate comunity that always try to strive to make the best of cakes. We serve everyone anytime, for every event.</p>
+      </div>
+      
     </div>
     <div class="row justify-center">
-      <h1 class="text-center"><strong>Our staff</strong></h1>
+      <h3 class="text-center"><strong>Our staff</strong></h3>
     </div>
     <div class="q-pa-md row items-start q-gutter-xl justify-around">
       <div v-for="person in staff" :key="person.id" class="justify-around row q-pa-sm">
@@ -72,8 +79,9 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-.my-card
-  width: 100%
-  max-width: 350px
+<style>
+.my-card{
+  width: 100%;
+  max-width: 350px;
+}
 </style>

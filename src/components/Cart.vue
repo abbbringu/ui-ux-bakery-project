@@ -19,11 +19,11 @@
                 <div class="col">
                   <div class="row justify-center">
                     <p></p>
-                    <q-img class="col" :src="item.image" style="height: 140px; max-width: 150px"/>
+                    <q-img class="col" :ratio="1/1" :src="item.image" style="max-height: 140px; max-width: 150px"/>
                   </div>
                   
                 </div>
-                <div class="col text-center column">
+                <div class="col text-center column gt-xs">
                   <div class="col">
                     <p>{{item.title}}</p>
                   </div>
@@ -35,6 +35,19 @@
                   </div>
                 </div>
                 <div class="col text-center">
+
+                   <div class="col text-center column lt-sm">
+                  <div class="col">
+                    <p>{{item.title}}</p>
+                  </div>
+                  <div class="row justify-center">
+                    <q-btn class="col" push  color="negative" label="x" @click="subtract(item, index)" v-if="item.amount === 1"/>
+                    <q-btn class="col" push  color="negative" label="-" @click="subtract(item, index)" v-else/>
+                    <p class="col">{{item.amount}}</p>
+                    <q-btn class="col" push  color="positive" label="+" @click="add(item)"/>
+                  </div>
+                </div>
+                
                   <p>$ {{item.amount * item.price}}</p>
                 </div>
               </div>
@@ -74,6 +87,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import axios from 'axios'
 export default {
     name: 'Profile',
     data() {
@@ -84,7 +98,8 @@ export default {
             data: null,
             noItems: true,
             isNotLoggedIn: false,
-            totalCost: 0
+            totalCost: 0,
+            articleId: null
         }
     },
     methods: {
@@ -127,11 +142,42 @@ export default {
           if(this.isAuth){
             console.log('du är innloggad')
             this.CarModification(this.data)
+            this.beginOrder()
           } else {
             console.log('you need to log in to continue')
             this.showNotif('You need to login in order to proceed', 'red', 'error')
             this.isNotLoggedIn = true
           }
+        },
+        SendOrder(orderid){ //Ska skicka till servern. 
+          var cake = []
+          this.data.forEach(element => {
+            if(element != 0) {
+              var data = {id: element.id, quantity: element.amount}
+              cake.push(data)
+            }
+          })
+          console.log(cake)
+          var body = {
+            id: orderid+1,
+            customerid: this.user.id,
+            cakes:cake
+          }
+          console.log(body)
+
+          axios.post("http://localhost:3000/orders", body)
+            .then(response => {
+              console.log('jag skickade')
+              this.data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+              this.$emit('purchase')
+            })
+
+        },
+        beginOrder(){
+           axios.get(`http://localhost:3000/orders`)
+            .then(response => {
+              this.SendOrder(response.data.length)
+            })
         },
         showNotif (message, color, icon) {
             this.$q.notify({
@@ -146,7 +192,8 @@ export default {
     },
     computed: {
     ...mapGetters('user', ['cart']),
-    ...mapGetters('auth', ['isAuth'])
+    ...mapGetters('auth', ['isAuth']),
+    ...mapGetters('user', ['user'])
   },
     created(){
       this.data = JSON.parse(JSON.stringify(this.cart))
@@ -154,6 +201,7 @@ export default {
     },
     beforeDestroy (){ //Innan den förstörs så skickar den till vuex vad användaren har ändrat
       this.CarModification(this.data)
+      this.$emit('addToBasket')
     }
   
 }

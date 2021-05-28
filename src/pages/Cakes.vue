@@ -1,7 +1,6 @@
 <template>
-  <div class="q-pa-md q-pt-xl row items-start justify-center q-gutter-md">
-    
-    <q-card class="my-card" flat bordered  v-for="cake in cakes" :key="cake.id">
+  <div class="q-pa-md q-pt-xl container row items-start justify-center q-gutter-md">
+    <q-card class="my-card gt-xs" flat bordered  v-for="cake in cakes" :key="cake.id"> <!-- För desktop -->
       <q-card-section @click="dialog(cake)" class="clickable">
         <div class="row justfy-center">
           <q-img class="thumbnail col" :src="cake.image"/>
@@ -24,8 +23,35 @@
       </q-card-actions>
     </q-card>
 
+        <q-card class="my-card-sm lt-sm"  v-for="cake in cakes" :key="cake.id*100">
+          <q-card-section horizontal class="clickable" @click="dialog(cake)">
+            <q-img
+              class="col-5"
+              :src="cake.image"
+            />
+            <q-card-section class="col">
+                <p class="text-subtitle1">{{cake.title}}</p>
+                <p>{{cake.previewDescription}}</p>
+            </q-card-section>
+          </q-card-section>
+        <q-separator />
+      <q-card-section>
+        <div class="row justify-between items-center">
+          <div class="col" @click="dialog(cake)" />
+          <div class="col" @click="dialog(cake)">
+            <p class="text-center text-subtitle2 text-orange-9">$ {{cake.price}}</p>
+          </div>
+          <div class="col">
+            <div class="row justify-center">
+                <q-btn size="md" class="q-ml-sm" round color="orange" icon="shopping_basket" @click="Addtocart(cake, 1)"/>
+            </div>
+          </div>
+        </div>
+      </q-card-section>
+    </q-card>
+
     <q-dialog v-model="showCake">
-      <ShowCake v-bind:fromParent="data" @addToBasket="Addtocart(...arguments)" @closethis="showCake = false"/>
+      <ShowCake v-bind:fromParent="data" @addToBasket="Addtocart(...arguments)" @closethis="showCake = false" @addedToBasket="SendToMain"/>
     </q-dialog>
 
     
@@ -41,6 +67,7 @@ export default {
   data () {
     return {
       cakes: null,
+      error: null,
       data: null,
       openDialog: false,
       showCake: false
@@ -55,6 +82,7 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
+    console.log('Afton_Champlin@gmail.com l5zckkComJGllkn');
   },
   methods: {
      ...mapActions('user', ['cartAction']),
@@ -66,6 +94,7 @@ export default {
       product.amount = quantity
       this.cartAction(product)
       this.showNotify('Added To Basket', 'positive', 'sentiment_satisfied_alt')
+      this.SendToMain()
     },
     showNotify(message, color, icon) {
           this.$q.notify({
@@ -76,6 +105,9 @@ export default {
             position: 'top',
             timeout: 1000
           })
+        },
+        SendToMain(){
+          this.$emit('addToBasket')
         }
   },
   computed: {
@@ -90,6 +122,9 @@ export default {
   max-width: 350px
   height: 550px
 
+.container
+  padding-top: 170px
+
 .clickable 
   cursor: pointer
 
@@ -97,5 +132,8 @@ export default {
   width: 250px
   height: 250px
 
+.my-card-sm
+  width: 100%
+  max-width: 350px
 
 </style>
