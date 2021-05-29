@@ -3,7 +3,6 @@
     <head>
       <meta charset="utf-8">
       <title>Glowing Social Icons</title>
-      <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     </head>
     <div class="" style="width:100%;" >
@@ -151,13 +150,10 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['login']),
-    getImgUrl: function (imagePath) {
-      return require('../../public\\images\\Icons\\' + imagePath);
-    },
-    pushToOrder(){
+    pushToOrder(){ // REdirect to cakes tab
       this.$router.push({path:'Cakes'})
     },
-    direct(){
+    direct(){ //open page outside of the application
       window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     }
   },

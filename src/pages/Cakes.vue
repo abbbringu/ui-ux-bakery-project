@@ -17,7 +17,7 @@
       <q-card-actions class="absolute-bottom q-pa-lg row justify-center">
         <div class="text-weight-bolder text-h6 text-orange-9 col text-center absolute-center q-pb-lg">$ {{cake.price}}</div>
         <div class=" absolute-bottom-right">
-          <q-btn size="lg" class="q-ma-sm" round color="orange" icon="shopping_basket" @click="Addtocart(cake, 1)"/>
+          <q-btn size="lg" class="q-ma-sm" round color="orange" icon="add" @click="Addtocart(cake, 1)"/>
         </div>
         <q-space />
       </q-card-actions>
@@ -43,7 +43,7 @@
           </div>
           <div class="col">
             <div class="row justify-center">
-                <q-btn size="md" class="q-ml-sm" round color="orange" icon="shopping_basket" @click="Addtocart(cake, 1)"/>
+                <q-btn size="md" class="q-ml-sm" round color="orange" icon="add" @click="Addtocart(cake, 1)"/>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default {
       showCake: false
     }
   },
-  created() {
+  created() { //makes api request when created
     axios.get(`http://localhost:3000/cakes`)
     .then(response => {
       // JSON responses are automatically parsed.
@@ -86,17 +86,17 @@ export default {
   },
   methods: {
      ...mapActions('user', ['cartAction']),
-    dialog(value){
+    dialog(value){ //open cake dialog
       this.data = value
       this.showCake = true
     },
-    Addtocart(product, quantity) {
+    Addtocart(product, quantity) { //add to cart
       product.amount = quantity
       this.cartAction(product)
       this.showNotify('Added To Basket', 'positive', 'sentiment_satisfied_alt')
       this.SendToMain()
     },
-    showNotify(message, color, icon) {
+    showNotify(message, color, icon) { //notification
           this.$q.notify({
             color: color,
             textColor:'white',

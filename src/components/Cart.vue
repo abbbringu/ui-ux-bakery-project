@@ -1,7 +1,7 @@
 <template>
     <q-card style="width: 800px; max-width: 80vw;">
         <q-card-section class="row items-center q-pb-none text-center">
-          <div class="text-weight-bolder text-h4 col">Cart</div>
+          <div class="text-weight-bolder text-h4 col">Basket</div>
         </q-card-section>
 
           <q-separator />
@@ -116,7 +116,7 @@ export default {
           }
           this.checkItemsInBasket(this.data)
         },
-        checkItemsInBasket(data){ // Tittar hur många object som finns i data
+        checkItemsInBasket(data){ // For getting full cost and check if there are items in the basket
           let item = false
           this.totalCost = 0
           data.forEach(element => {
@@ -131,14 +131,14 @@ export default {
             this.noItems = true
           }
         },
-        toShopping(){
+        toShopping(){ //open cakes tabs
           this.$emit('closemyself')
         },
-        toLogin(){
+        toLogin(){ //open login tab
           this.$emit('toLogin')
           this.isNotLoggedIn = false
         },
-        checkout(){
+        checkout(){ //Execute when user tries to chekout 
           if(this.isAuth){
             console.log('du är innloggad')
             this.CarModification(this.data)
@@ -149,7 +149,7 @@ export default {
             this.isNotLoggedIn = true
           }
         },
-        SendOrder(orderid){ //Ska skicka till servern. 
+        SendOrder(orderid){ //Send to server
           var cake = []
           this.data.forEach(element => {
             if(element != 0) {
@@ -173,13 +173,13 @@ export default {
             })
 
         },
-        beginOrder(){
+        beginOrder(){ //Sending to server
            axios.get(`http://localhost:3000/orders`)
             .then(response => {
               this.SendOrder(response.data.length)
             })
         },
-        showNotif (message, color, icon) {
+        showNotif (message, color, icon) { //notifikation
             this.$q.notify({
                 color: color,
                 textColor:'white',

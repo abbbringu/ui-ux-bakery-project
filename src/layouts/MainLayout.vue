@@ -78,7 +78,7 @@ export default {
     resetnav () {
       this.tab = ''
     },
-    loginScreen () {
+    loginScreen () { // show different popups depends on the auth status
       if(this.isAuth){
         this.LoggedIn = true
         this.LoggedOut = false
@@ -89,7 +89,7 @@ export default {
         this.LoggedOut = true
       }
     },
-    changeIcon: function(value) {
+    changeIcon: function(value) { // change the icons
       if(value){
         this.authIconColor = 'orange-9'
       } else {
@@ -97,7 +97,7 @@ export default {
       }
       
     },
-    changeCartIcon(){
+    changeCartIcon(){ //Change the amount of different cakes in the basket
       this.amountInCart = 0
       this.cart.forEach(element => {
       if(element != 0){
@@ -105,13 +105,13 @@ export default {
       }
     })
     },
-    purchase(){
+    purchase(){  // Execute when user checksout
       console.log('test')
       this.showCart = false
       this.checkmark = true
       this.init()
     },
-    init() {
+    init() { // show gif for 6 seconds
         setTimeout(() => {  
           var img = document.getElementById('test');
           this.checkmark = false 

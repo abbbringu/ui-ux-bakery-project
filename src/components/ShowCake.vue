@@ -1,5 +1,5 @@
 <template>
-    <q-card style="max-width: 900px; max-height: 90%;">
+    <q-card style="max-width: 900px">
         <q-card-section class="row items-center q-pb-none">
           <div class="text-weight-bolder text-h5 col text-center">{{fromParent.title}}</div>
         </q-card-section>
@@ -10,7 +10,7 @@
 
         <q-separator />
 
-        <q-card-section class=" col row justify-center scroll" style="max-height: 25vh">
+        <q-card-section class=" col row justify-center scroll" style="max-height: 25vh;">
           <div class="text-desc">
             <p>{{fromParent.detailDescription}}</p>
           </div>
@@ -55,7 +55,7 @@ export default {
         }
     },
     methods: {
-        showNotify(message, color, icon) {
+        showNotify(message, color, icon) { //notification
           this.$q.notify({
             color: color,
             textColor:'white',
@@ -65,7 +65,7 @@ export default {
             timeout: 2000
           })
         },
-        qtyChanger(add) {
+        qtyChanger(add) { //modify totlal price
           if(add){
             this.qty++
             this.priceCalculator()
@@ -78,7 +78,7 @@ export default {
         priceCalculator(){
           this.totalCost = this.qty * this.fromParent.price
         },
-        addToBasket(){
+        addToBasket(){ // execute when user add cakse to basket
           this.$emit('addToBasket', this.fromParent, this.qty)
           console.log('adding to basket')
           this.showNotify('Added To Basket', 'positive', 'sentiment_satisfied_alt')
@@ -92,6 +92,7 @@ export default {
 <style scoped>
 .text-desc{
   width: 70%;
+  font-size: 20px;
 }
 
 .img-cotainer {

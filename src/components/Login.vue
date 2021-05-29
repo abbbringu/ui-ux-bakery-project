@@ -1,7 +1,7 @@
 <template>
     <q-card style="width: 800px; max-width: 80vw;">
         <q-card-section class="row items-center q-pb-none">
-          <div class="text-weight-bolder text-h4 col">Log in</div>
+          <div class="text-weight-bolder text-h4 col">Login</div>
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup/>
         </q-card-section>
@@ -11,16 +11,16 @@
         </q-card-section>
         <q-card-section class=" col row justify-center">
           <div style="width: 70%" class="">
-            <q-input class="col" type="email" label="E-mail" v-model="email" :rules="[val => val && val.length > 0 || 'write your email here']"></q-input>
+            <q-input class="col" type="email" color="orange-9" label="E-mail" v-model="email" :rules="[val => val && val.length > 0 || 'write your email here']"></q-input>
           </div>
         </q-card-section>
         <q-card-section class="row justify-center">
           <div style="width: 70%" class="">
-            <q-input class="col" type="password" label="Password" v-model="password" :rules="[val => val && val.length > 0 || 'write your password here']"></q-input>
+            <q-input class="col" type="password" color="orange-9" label="Password" v-model="password" :rules="[val => val && val.length > 0 || 'write your password here']"></q-input>
           </div>
         </q-card-section>
         <q-card-actions align="center">
-          <q-btn flat size="23px" label="Log In" color="primary" v-close-popup='veryfying' @click="veryfyingstuff" />
+          <q-btn flat size="23px" label="Login" color="orange-9" v-close-popup='veryfying' @click="veryfyingstuff" />
         </q-card-actions>
       </q-card>
 </template>
@@ -53,7 +53,7 @@ export default {
                 }
               }
             })
-            if(this.isAuth == false){
+            if(this.isAuth == false){ // Kollar om användaren är inloggad och ändrar icon färg
               console.log('failed to login')
               this.showNotify('Email or password were incorrect', 'negative', 'error')
             }
