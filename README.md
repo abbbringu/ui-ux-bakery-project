@@ -19,23 +19,15 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="">
+    <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Projekt UI / UX</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Skapar ett gränsnitt för en specifik målgrupp
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </p>
 
@@ -70,13 +62,12 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Om projektet
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Projektet utgår från att planera, designa och utveckla ett gränsnitt för en specifik målgrupp. I projektets början designades mockups för sidor och funktioner för att uppfylla 
+gränssnitets krav.
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
+Kraven:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
 * You should element DRY principles to the rest of your life :smile:
