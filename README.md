@@ -20,7 +20,7 @@
 <br />
 <p align="center">
   <a href="">
-    <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" alt="Logo" width="80" height="80">
+    <img src="https://pngimage.net/wp-content/uploads/2018/05/cake-shop-logo-png-3.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Projekt UI / UX</h3>
@@ -90,6 +90,13 @@ Hemsidan komunicerar med en server som körs lokalt. För att starta upp servern
   npm run start-server
   ```
 ## Dokumentation
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AiztLLVSUww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/embed/AiztLLVSUww/0.jpg)](https://www.youtube.com/embed/AiztLLVSUww)
+
+## Förbättringar
+Under projektets gång och efter resultatet hittar man alltid förbättrings områden och ändringar som skulle kunna göra gränsnitet bättre. Många förändringar i detta fall handlar om den visuella delen, men det finns även förändringar i bakgrunden som förbättrar applikationen.
+* Headern skulle kunna minimeras när man skrollar ner i hemsidan
+* Tårtorna kan visas på ett bättre sätt som får den att se bättre ut när man klickar för mer information
+* Om oss sidan kan visa upp personalen på ett bättre sätt som får användaren att förstå att man kan kopiera mail respektive telefonnumer. 
+* Planneringen kunde ta med en tidsplan och vara bättre fördelat så rätt för att prioritera det viktigaste
+* Kod strukturen kunde ske på bättre sätt. Istället för att se på varje "page" som en huvudkomponent kan det se som en child till en gemensam komponent. Vi skulle kunna hämta all data från apierna en gång och passera de genom barn-komponenter. 
+* Gjort mer undersökning angående lokal lagring. Vet att quasar hade en lösning eller att datan lagrades i en huvudkomponent
