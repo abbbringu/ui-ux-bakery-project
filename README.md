@@ -89,12 +89,7 @@ Hemsidan komunicerar med en server som körs lokalt. För att starta upp servern
   ```sh
   npm run start-server
   ```
+## Dokumentation
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AiztLLVSUww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/embed/AiztLLVSUww/0.jpg)](https://www.youtube.com/embed/AiztLLVSUww)
