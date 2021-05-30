@@ -90,7 +90,7 @@ Hemsidan komunicerar med en server som körs lokalt. För att starta upp servern
   npm run start-server
   ```
 ## Dokumentation
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/embed/AiztLLVSUww/0.jpg)](https://www.youtube.com/embed/AiztLLVSUww)
+[![IMAGE ALT TEXT HERE](/Bilder)](https://www.youtube.com/embed/AiztLLVSUww)
 
 ## Förbättringar
 Under projektets gång och efter resultatet hittar man alltid förbättrings områden och ändringar som skulle kunna göra gränsnitet bättre. Många förändringar i detta fall handlar om den visuella delen, men det finns även förändringar i bakgrunden som förbättrar applikationen.
