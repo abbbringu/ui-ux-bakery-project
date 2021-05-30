@@ -38,7 +38,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#om-projektet">Om projektet</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -68,9 +68,10 @@ Projektet utgår från att planera, designa och utveckla ett gränsnitt för en 
 gränssnitets krav.
 
 Kraven:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+* Tårtorna ska visas upp till användren
+* Användaren ska kunna markera tårtorna de vill ha, och beställa den
+* Användare ska kunna logga in / logga ut
+* Personalen ska visas 
 
 Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
 
