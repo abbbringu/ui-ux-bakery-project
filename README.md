@@ -90,9 +90,16 @@ Hemsidan komunicerar med en server som körs lokalt. För att starta upp servern
   npm run start-server
   ```
 ## Dokumentation
-[![IMAGE ALT TEXT HERE](https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png)](https://www.youtube.com/embed/AiztLLVSUww)
+<p align="center">
+<a href="https://www.youtube.com/embed/AiztLLVSUww">
+
+  <img src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png" alt="Logo" width="186" height="132">
+  
+</a>
+</p>
 
 ## Förbättringar
+
 Under projektets gång och efter resultatet hittar man alltid förbättrings områden och ändringar som skulle kunna göra gränsnitet bättre. Många förändringar i detta fall handlar om den visuella delen, men det finns även förändringar i bakgrunden som förbättrar applikationen
 * Headern skulle kunna minimeras när man skrollar ner i hemsidan
 * Tårtorna kan visas på ett bättre sätt som får den att se bättre ut när man klickar för mer information
